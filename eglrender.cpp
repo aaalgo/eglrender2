@@ -124,6 +124,7 @@ EglRenderCtx::EglRenderCtx (GLint w, GLint h): width(w), height(h) {
 cv::Mat EglRenderCtx::render () {
     cv::Mat image(height, width, CV_8UC4);
     //glReadBuffer(GL_BACK);
+    glFinish();
     glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, image.ptr<uint8_t>(0));
     cv::Mat out;
     cv::cvtColor(image, out, CV_RGBA2BGR);
